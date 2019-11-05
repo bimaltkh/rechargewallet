@@ -27,7 +27,7 @@ Button button;
                 if (name.getText().toString().isEmpty() && DOB.getText().toString().isEmpty() && usrname.getText().toString().isEmpty() && pass.getText().toString().isEmpty() || conpass.getText().toString().equals(pass)) {
                     Toast.makeText(MainActivity.this, "field is empty", Toast.LENGTH_SHORT).show();
                 }
-                
+
             }
 
         });
