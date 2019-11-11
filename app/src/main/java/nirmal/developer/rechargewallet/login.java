@@ -1,12 +1,12 @@
 package nirmal.developer.rechargewallet;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -23,32 +23,29 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity {
-EditText name,DOB,usrname,userid,pass,conpass;
-Button button;
+public class login extends AppCompatActivity {
+    EditText usrname2, pass2;
+    Button login;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        name=findViewById(R.id.name);
-        DOB=findViewById(R.id.dob);
-        userid=findViewById(R.id.userID);
-        usrname=findViewById(R.id.user);
-        pass=findViewById(R.id.pass);
-        conpass=findViewById(R.id.conpass);
-        button=findViewById(R.id.reg);
-        button.setOnClickListener(new View.OnClickListener() {
+        usrname2=findViewById(R.id.usrnamelogin);
+        pass2=findViewById(R.id.passlogin);
+        login=findViewById(R.id.log);
+        login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (name.getText().toString().isEmpty() || DOB.getText().toString().isEmpty() || usrname.getText().toString().isEmpty() || pass.getText().toString().isEmpty() && conpass.getText().toString().equals(pass)) {
-                    Toast.makeText(MainActivity.this, "field is empty", Toast.LENGTH_SHORT).show();
+                if (usrname2.getText().toString().isEmpty() || pass2.getText().toString().isEmpty()) {
+                    Toast.makeText(login.this, "field is empty", Toast.LENGTH_SHORT).show();
                     StringRequest stringRequest = new StringRequest(Request.Method.POST, "intown-film.000webhostapp.com/msg.php",
                             new Response.Listener<String>() {
                                 @Override
                                 public void onResponse(String response) {
 //If we are getting success from server
 
-                                    Toast.makeText(MainActivity.this, response, Toast.LENGTH_LONG).show();
+                                    Toast.makeText(login.this, response, Toast.LENGTH_LONG).show();
 //Intent iso= new Intent(getApplicationContext(),HOME_page.class);
 //startActivity(iso);
                                     try {
@@ -75,11 +72,9 @@ Button button;
                             Map<String, String> params = new HashMap<>();
 //Adding parameters to request
 
-                            params.put("name", name.getText().toString());
-                            params.put("DOB",DOB.getText().toString());
-                            params.put("ID",userid.getText().toString());
-                            params.put("username",usrname.getText().toString());
-                            params.put("pass",pass.getText().toString());
+
+                            params.put("username2", usrname2.getText().toString());
+                            params.put("pass2", pass2.getText().toString());
 
 
 //returning parameter
@@ -87,12 +82,14 @@ Button button;
                         }
                     };
 //Adding the string request to the queue
-                    RequestQueue requestQueue = Volley.newRequestQueue(MainActivity.this);
+                    RequestQueue requestQueue = Volley.newRequestQueue(login.this);
                     requestQueue.add(stringRequest);
                 } else {
-                    Toast.makeText(MainActivity.this, "EMPTY VALUES ...", Toast.LENGTH_LONG).show();
+                    Toast.makeText(login.this, "EMPTY VALUES ...", Toast.LENGTH_LONG).show();
                 }
+
             }
         });
+
     }
 }
