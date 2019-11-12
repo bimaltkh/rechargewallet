@@ -41,7 +41,7 @@ Button button;
             @Override
             public void onClick(View view) {
                 if (name.getText().toString().isEmpty() || DOB.getText().toString().isEmpty() || usrname.getText().toString().isEmpty() || pass.getText().toString().isEmpty() && conpass.getText().toString().equals(pass)) {
-                    Toast.makeText(MainActivity.this, "field is empty", Toast.LENGTH_SHORT).show();
+                   Toast.makeText(MainActivity.this, "field is empty", Toast.LENGTH_SHORT).show();
                     StringRequest stringRequest = new StringRequest(Request.Method.POST, "intown-film.000webhostapp.com/msg.php",
                             new Response.Listener<String>() {
                                 @Override
@@ -89,8 +89,8 @@ Button button;
 //Adding the string request to the queue
                     RequestQueue requestQueue = Volley.newRequestQueue(MainActivity.this);
                     requestQueue.add(stringRequest);
-                } else {
-                    Toast.makeText(MainActivity.this, "EMPTY VALUES ...", Toast.LENGTH_LONG).show();
+                }else {
+                   Toast.makeText(MainActivity.this, "EMPTY VALUES ...", Toast.LENGTH_LONG).show();
                 }
             }
         });
