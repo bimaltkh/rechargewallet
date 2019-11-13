@@ -1,5 +1,6 @@
 package nirmal.developer.rechargewallet;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -25,29 +26,31 @@ import java.util.Map;
 
 public class login extends AppCompatActivity {
     EditText usrname2, pass2;
-    Button login;
+    Button login1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.login);
         usrname2=findViewById(R.id.usrnamelogin);
         pass2=findViewById(R.id.passlogin);
-        login=findViewById(R.id.log);
-        login.setOnClickListener(new View.OnClickListener() {
+        login1=findViewById(R.id.button3);
+        login1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (usrname2.getText().toString().isEmpty() || pass2.getText().toString().isEmpty()) {
                     Toast.makeText(login.this, "field is empty", Toast.LENGTH_SHORT).show();
-                    StringRequest stringRequest = new StringRequest(Request.Method.POST, "intown-film.000webhostapp.com/msg.php",
+                }
+                else {
+                    StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://mature-railroads.000webhostapp.com/RechargeWallet/login.php",
                             new Response.Listener<String>() {
                                 @Override
                                 public void onResponse(String response) {
 //If we are getting success from server
 
                                     Toast.makeText(login.this, response, Toast.LENGTH_LONG).show();
-//Intent iso= new Intent(getApplicationContext(),HOME_page.class);
-//startActivity(iso);
+Intent iso= new Intent(getApplicationContext(),profilepic.class);
+startActivity(iso);
                                     try {
                                         JSONArray jsonArray = new JSONArray(response);
                                         for (int i = 0; i < jsonArray.length(); i++) {
@@ -73,8 +76,8 @@ public class login extends AppCompatActivity {
 //Adding parameters to request
 
 
-                            params.put("username2", usrname2.getText().toString());
-                            params.put("pass2", pass2.getText().toString());
+                            params.put("usr", usrname2.getText().toString());
+                            params.put("pas", pass2.getText().toString());
 
 
 //returning parameter
@@ -84,8 +87,6 @@ public class login extends AppCompatActivity {
 //Adding the string request to the queue
                     RequestQueue requestQueue = Volley.newRequestQueue(login.this);
                     requestQueue.add(stringRequest);
-                } else {
-                    Toast.makeText(login.this, "EMPTY VALUES ...", Toast.LENGTH_LONG).show();
                 }
 
             }
